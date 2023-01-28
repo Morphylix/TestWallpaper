@@ -1,4 +1,4 @@
-# TestWallpaper
+TestWallpaper
 =======================
 Test task
 
