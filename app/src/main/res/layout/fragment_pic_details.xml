@@ -19,6 +19,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginBottom="64dp"/>
 
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/error_image_view"
+        android:layout_width="wrap_content"
+        android:minWidth="128dp"
+        android:layout_height="wrap_content"
+        android:minHeight="128dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="gone"
+        android:alpha="0"
+        android:src="@drawable/error"/>
+
     <ProgressBar
         android:id="@+id/pic_details_progress_bar"
         android:layout_width="64dp"

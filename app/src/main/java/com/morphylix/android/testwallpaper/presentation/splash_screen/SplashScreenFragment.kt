@@ -9,6 +9,7 @@ import androidx.core.animation.doOnEnd
 import androidx.navigation.fragment.findNavController
 import com.morphylix.android.testwallpaper.databinding.FragmentSplashScreenBinding
 import com.morphylix.android.testwallpaper.presentation.BaseFragment
+import com.morphylix.android.testwallpaper.util.isInternetAvailable
 
 @SuppressLint("CustomSplashScreen")
 class SplashScreenFragment : BaseFragment<FragmentSplashScreenBinding>({ inflater, container ->
@@ -27,11 +28,26 @@ class SplashScreenFragment : BaseFragment<FragmentSplashScreenBinding>({ inflate
         val anim = ObjectAnimator.ofInt(binding.splashScreenProgressBar, "progress", 0, 100)
         anim.duration = 1000
         anim.doOnEnd {
-            val action =
-                SplashScreenFragmentDirections.actionSplashScreenFragmentToCategoryChoiceFragment()
-            findNavController().navigate(action)
+            if (isInternetAvailable(requireContext())) {
+                val action =
+                    SplashScreenFragmentDirections.actionSplashScreenFragmentToCategoryChoiceFragment()
+                findNavController().navigate(action)
+            } else {
+                with(binding) {
+                    splashScreenProgressBar.visibility = View.GONE
+                    tryAgainButton.visibility = View.VISIBLE
+                }
+            }
         }
         anim.start()
+
+        with(binding) {
+            tryAgainButton.setOnClickListener {
+                tryAgainButton.visibility = View.GONE
+                splashScreenProgressBar.visibility = View.VISIBLE
+                anim.start()
+            }
+        }
     }
 
 }

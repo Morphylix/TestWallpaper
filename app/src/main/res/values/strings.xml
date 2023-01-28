@@ -9,4 +9,6 @@
     <string name="error">Error: %s</string>
     <string name="wallpaper_success">Wallpaper successfully changed</string>
     <string name="vpn">probably your vpn is turned off</string>
+    <string name="server_error">server not responding. Please, try again later</string>
+    <string name="try_again">Try again</string>
 </resources>

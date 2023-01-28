@@ -18,6 +18,7 @@ object ErrorHandler {
             is HttpException -> {
                 when (e.code()) {
                     404 -> context.getString(R.string.page_not_found)
+                    in 500..599 -> context.getString(R.string.server_error)
                     else -> context.getString(R.string.something_went_wrong)
                 }
             }

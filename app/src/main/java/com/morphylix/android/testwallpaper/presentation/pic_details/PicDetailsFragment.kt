@@ -12,6 +12,7 @@ import com.morphylix.android.testwallpaper.R
 import com.morphylix.android.testwallpaper.databinding.FragmentPicDetailsBinding
 import com.morphylix.android.testwallpaper.presentation.BaseFragment
 import com.morphylix.android.testwallpaper.util.ErrorHandler
+import com.morphylix.android.testwallpaper.util.animateAppear
 import com.squareup.picasso.Picasso
 import com.squareup.picasso.Target
 import java.io.IOException
@@ -36,6 +37,11 @@ class PicDetailsFragment : BaseFragment<FragmentPicDetailsBinding>({ inflater, c
 
         wallpaperManager = WallpaperManager.getInstance(requireContext().applicationContext)
         with(binding) {
+
+            if (pictureImageView.drawable == null) {
+                pictureImageView.isEnabled = false
+            }
+
             setAsWallpaperButton.setOnClickListener {
                 try {
                     val bitmap: Bitmap? = pictureImageView.drawable?.toBitmap()
@@ -49,15 +55,23 @@ class PicDetailsFragment : BaseFragment<FragmentPicDetailsBinding>({ inflater, c
             }
 
             val target = object : Target {
-                override fun onBitmapLoaded(bitmap: Bitmap?, from: Picasso.LoadedFrom?) {
+                override fun onBitmapLoaded(bitmap: Bitmap, from: Picasso.LoadedFrom) {
                     binding.picDetailsProgressBar.visibility = View.GONE
                     binding.pictureImageView.setImageBitmap(bitmap)
+                    pictureImageView.isEnabled = true
                 }
 
-                override fun onBitmapFailed(e: Exception?, errorDrawable: Drawable?) {
+                override fun onBitmapFailed(e: Exception, errorDrawable: Drawable) {
+                    ErrorHandler.handleException(e, requireContext())
+                    with(binding) {
+                        setAsWallpaperButton.visibility = View.GONE
+                        picDetailsProgressBar.visibility = View.GONE
+                        errorImageView.visibility = View.VISIBLE
+                        animateAppear(errorImageView)
+                    }
                 }
 
-                override fun onPrepareLoad(placeHolderDrawable: Drawable?) {
+                override fun onPrepareLoad(placeHolderDrawable: Drawable) {
                     binding.picDetailsProgressBar.visibility = View.VISIBLE
                 }
             }
