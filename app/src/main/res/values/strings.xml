@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">TestWallpaper</string>
+    <string name="choose_category">Choose category:</string>
+    <string name="set_as_wallpaper">Set as wallpaper</string>
+    <string name="no_connection">please check Internet connection</string>
+    <string name="something_went_wrong">something went wrong</string>
+    <string name="page_not_found">page not found</string>
+    <string name="cant_set_wallpaper">can\'t set image as wallpaper. Please try again</string>
+    <string name="error">Error: %s</string>
+    <string name="wallpaper_success">Wallpaper successfully changed</string>
+    <string name="vpn">probably your vpn is turned off</string>
+</resources>

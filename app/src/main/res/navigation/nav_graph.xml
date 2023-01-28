@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nava_graph"
+    app:startDestination="@id/splashScreenFragment">
+
+    <fragment
+        android:id="@+id/categoryChoiceFragment"
+        android:name="com.morphylix.android.testwallpaper.presentation.category_choice.CategoryChoiceFragment"
+        android:label="CategoryChoiceFragment" >
+        <action
+            android:id="@+id/action_categoryChoiceFragment_to_picListFragment"
+            app:destination="@id/picListFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/picListFragment"
+        android:name="com.morphylix.android.testwallpaper.presentation.pic_list.PicListFragment"
+        android:label="PicListFragment" >
+        <action
+            android:id="@+id/action_picListFragment_to_picDetailsFragment"
+            app:destination="@id/picDetailsFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <argument
+            android:name="category"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/picDetailsFragment"
+        android:name="com.morphylix.android.testwallpaper.presentation.pic_details.PicDetailsFragment"
+        android:label="PicDetailsFragment" >
+        <argument
+            android:name="url"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/splashScreenFragment"
+        android:name="com.morphylix.android.testwallpaper.presentation.splash_screen.SplashScreenFragment"
+        android:label="SplashScreenFragment" >
+        <action
+            android:id="@+id/action_splashScreenFragment_to_categoryChoiceFragment"
+            app:destination="@id/categoryChoiceFragment" />
+    </fragment>
+</navigation>
